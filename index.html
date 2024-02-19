@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro de Alunos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+  </head>
+  <body>
+    <main class="container-sm mt-5">
+      <h1>Cadastro de Alunos</h1>
+      <form>
+        <div class="mb-3">
+          <label for="nomeCompleto" class="form-label">Nome Completo</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nomeCompleto"
+            aria-describedby="nomeHelp" />
+          <div id="nomeHelp" class="form-text">Informe seu nome completo.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="matricula" class="form-label">Matrícula</label>
+          <input
+            type="text"
+            class="form-control"
+            id="matricula"
+            aria-describedby="matriculaHelp" />
+          <div id="matriculaHelp" class="form-text">
+            Informe o número de matrícula.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="curso" class="form-label">Curso</label>
+          <input
+            type="text"
+            class="form-control"
+            id="curso"
+            aria-describedby="cursoHelp" />
+          <div id="cursoHelp" class="form-text">
+            Informe o curso que está cadastrando.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dataNascimento"
+            aria-describedby="dataNascimentoHelp" />
+          <div id="dataNascimentoHelp" class="form-text">
+            Informe sua data de nascimento.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="telefone"
+            aria-describedby="telefoneHelp"
+            pattern="[0-9]{10}" />
+          <div id="telefoneHelp" class="form-text">
+            Informe seu número de telefone (apenas números).
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="submit"
+          class="btn btn-primary"
+          onclick="salvar()">
+          Cadastrar
+        </button>
+      </form>
+
+      <!-- Container para exibir dados registrados -->
+      <div id="dadosRegistradosContainer" class="mt-4">
+        <!-- Dados registrados serão exibidos aqui -->
+      </div>
+    </main>
+
+    <script src="main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
