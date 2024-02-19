@@ -38,35 +38,44 @@ function exibirDadosRegistrados(dados) {
 
 // Modificando a função salvar para acumular os dados registrados
 function salvar() {
-  const nome = document.getElementById('nomeCompleto').value; 
-  const matricula = document.getElementById('matricula').value; 
-  const curso = document.getElementById('curso').value; 
-  const dataNascimento = document.getElementById('dataNascimento').value; 
-  const telefone = document.getElementById('telefone').value; 
+  const nome = document.getElementById('nomeCompleto').value;
+  const matricula = document.getElementById('matricula').value;
+  const curso = document.getElementById('curso').value;
+  const dataNascimento = document.getElementById('dataNascimento').value;
+  const telefone = document.getElementById('telefone').value;
 
   fetch('https://alunos-192-default-rtdb.firebaseio.com/alunos.json', {
-      method: 'POST',
-      body: JSON.stringify({
-          nome: nome,
-          matricula: matricula,
-          curso: curso,
-          data_nascimento: dataNascimento,
-          telefone: telefone,
-      })
+    method: 'POST',
+    body: JSON.stringify({
+      nome: nome,
+      matricula: matricula,
+      curso: curso,
+      data_nascimento: dataNascimento,
+      telefone: telefone,
+    })
   })
   .then(response => response.json())
   .then(data => {
-      // Obtém todos os alunos existentes e adiciona o novo aluno
-      fetch('https://alunos-192-default-rtdb.firebaseio.com/alunos.json')
-        .then(response => response.json())
-        .then(alunos => {
-          const todosAlunos = Object.values(alunos || {});
-          exibirDadosRegistrados([...todosAlunos, { ...data, nome, matricula, curso, data_nascimento: dataNascimento, telefone }]);
-        })
-        .catch(error => console.error('Erro ao buscar alunos:', error));
+    // Obtém todos os alunos existentes
+    fetch('https://alunos-192-default-rtdb.firebaseio.com/alunos.json')
+      .then(response => response.json())
+      .then(alunos => {
+        // Verifica se o novo aluno já está presente no array
+        const todosAlunos = Object.values(alunos || {});
+        const alunoExistente = todosAlunos.find(aluno => aluno.matricula === matricula);
+
+        if (!alunoExistente) {
+          todosAlunos.push({ ...data, nome, matricula, curso, data_nascimento: dataNascimento, telefone });
+        }
+
+        // Exibe os dados registrados
+        exibirDadosRegistrados(todosAlunos);
+      })
+      .catch(error => console.error('Erro ao buscar alunos:', error));
   })
   .catch(error => console.error('Erro ao salvar os dados:', error));
 }
+
 
 // Inicializa exibição com dados de exemplo
 exibirDadosRegistrados([
