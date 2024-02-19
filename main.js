@@ -2,28 +2,39 @@
 function exibirDadosRegistrados(dados) {
   const container = document.getElementById('dadosRegistradosContainer');
 
+  // Limpa o conteúdo atual do container
+  container.innerHTML = '';
+
   // Cria um elemento div para cada conjunto de dados
   dados.forEach((aluno) => {
-      const divAluno = document.createElement('div');
-      divAluno.classList.add('card', 'mb-3');
+    const divAluno = document.createElement('div');
+    divAluno.classList.add('card', 'mb-3');
 
-      const divCardBody = document.createElement('div');
-      divCardBody.classList.add('card-body');
+    const divCardBody = document.createElement('div');
+    divCardBody.classList.add('card-body');
 
-      // Adiciona os detalhes do aluno ao corpo do cartão
-      divCardBody.innerHTML = `
-          <h5 class="card-title">${aluno.nome}</h5>
-          <p class="card-text">Matrícula: ${aluno.matricula}</p>
-          <p class="card-text">Curso: ${aluno.curso}</p>
-          <p class="card-text">Data de Nascimento: ${aluno.data_nascimento}</p>
-          <p class="card-text">Telefone: ${aluno.telefone}</p>
-      `;
+    // Adiciona os detalhes do aluno ao corpo do cartão
+    divCardBody.innerHTML = `
+        <h5 class="card-title">${aluno.nome}</h5>
+        <p class="card-text">Matrícula: ${aluno.matricula}</p>
+        <p class="card-text">Curso: ${aluno.curso}</p>
+        <p class="card-text">Data de Nascimento: ${aluno.data_nascimento}</p>
+        <p class="card-text">Telefone: ${aluno.telefone}</p>
+    `;
 
-      // Adiciona o corpo do cartão ao cartão e o cartão ao container
-      divAluno.appendChild(divCardBody);
-      container.appendChild(divAluno);
+    // Adiciona o corpo do cartão ao cartão e o cartão ao container
+    divAluno.appendChild(divCardBody);
+    container.appendChild(divAluno);
   });
+
+  // Limpa os campos do formulário
+  document.getElementById('nomeCompleto').value = '';
+  document.getElementById('matricula').value = '';
+  document.getElementById('curso').value = '';
+  document.getElementById('dataNascimento').value = '';
+  document.getElementById('telefone').value = '';
 }
+
 
 // Modificando a função salvar para acumular os dados registrados
 function salvar() {
